@@ -34,10 +34,12 @@ services:
     container_name: sonar_scanner
     restart: always
     volumes:
-      - /test/:/usr/src
-    entrypoint: ["/bin/sh", "-c", "sonar-scanner -Dsonar.projectKey=test -Dsonar.sources=/usr/src -Dsonar.host.url=http://sonarqube:9000 -Dsonar.token=sqp_25fafb929e06271c666f1aa14f4b2f32a778942b"]
+      - /test:/usr/src
+    entrypoint: ["/bin/sh", "-c", "sonar-scanner -Dsonar.projectKey=test -Dsonar.sources=/usr/src -Dsonar.host.url=http://sonarqube:9000 -Dsonar.token=sqp_f483cd2976adfe707e27c9de4d9b2681f2cad7ad"]
     networks:
       - sonarqube-network
+    depends_on:
+      - sonarqube
 
 networks:
   sonarqube-network:
